@@ -25,7 +25,7 @@ This project is designed to provide agents with comprehensive solutions for mana
 Once the application is running, open your browser and navigate to `http://localhost:3000` to access the app. 
 
 ## Live Demo
-A live demo of the application can be accessed at [Demo Link](http://your-live-demo-url.com).
+A live demo of the application can be accessed at https://agentti.salescommunications.fi/)
 
 ## Project Structure
 ```
