@@ -896,6 +896,89 @@ footer {
   <div class="progress-bar" id="progressBar"></div>
 </nav>
 
+<!-- WEBINAR BANNER -->
+<div id="webinarBanner" style="display:none">
+  <a href="https://webinar.salescommunications.fi/" target="_blank" rel="noopener" class="webinar-banner">
+    <span class="webinar-live-dot"></span>
+    <span class="webinar-label">Webinaari</span>
+    <span class="webinar-title">Agenttinen myyntiprosessi — 20.5.2026 klo 14:00</span>
+    <span class="webinar-cta">Ilmoittaudu mukaan <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+  </a>
+  <button class="webinar-close" id="webinarClose" aria-label="Sulje">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+<style>
+#webinarBanner {
+  position: relative;
+  background: var(--color-primary);
+  z-index: 90;
+}
+.webinar-banner {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--space-3); flex-wrap: wrap;
+  padding: 10px var(--space-6);
+  color: #fff; text-decoration: none;
+  font-size: var(--text-sm); font-weight: 500;
+  transition: background 0.2s;
+}
+.webinar-banner:hover { background: rgba(0,0,0,0.08); color: #fff; }
+.webinar-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+  animation: webinar-pulse 2s infinite;
+}
+@keyframes webinar-pulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
+  50%      { box-shadow: 0 0 0 6px rgba(255,255,255,0.0); }
+}
+.webinar-label {
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px; padding: 2px 10px;
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.webinar-title { color: rgba(255,255,255,0.95); }
+.webinar-cta {
+  display: flex; align-items: center; gap: 4px;
+  font-weight: 700; color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 1px;
+}
+.webinar-close {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  background: transparent; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.7); padding: 6px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+}
+.webinar-close:hover { color: #fff; background: rgba(0,0,0,0.12); }
+@media (max-width: 480px) {
+  .webinar-cta { display: none; }
+  .webinar-banner { padding: 10px var(--space-10) 10px var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) { .webinar-live-dot { animation: none; } }
+</style>
+<script>
+(function(){
+  var banner = document.getElementById('webinarBanner');
+  var closeBtn = document.getElementById('webinarClose');
+  // Hide automatically after 20.5.2026 14:30 Helsinki (EEST = UTC+3)
+  var hideAfter = new Date('2026-05-20T14:30:00+03:00');
+  var dismissed = sessionStorage.getItem('webinarDismissed');
+  if (!dismissed && new Date() < hideAfter) {
+    banner.style.display = 'flex';
+    banner.style.alignItems = 'center';
+  }
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    banner.style.display = 'none';
+    sessionStorage.setItem('webinarDismissed', '1');
+  });
+})();
+</script>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
